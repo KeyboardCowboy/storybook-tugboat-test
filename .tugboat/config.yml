@@ -9,8 +9,9 @@ services:
       # Commands that set up the basic preview infrastructure
       init:
         # Install storybook
-        #- npx storybook@latest init
         - npm install
       build:
-        # Start the storybook instance
-        - npm run storybook
+        # Build the static storybook site.
+        - npm run build-storybook
+        # Set the webroot for Storybook
+        - ln -snf "./storybook-static" "${DOCROOT}"
