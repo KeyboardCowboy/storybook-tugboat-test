@@ -10,6 +10,8 @@ services:
 
         # Set the webroot for Storybook
         - ln -snf "${TUGBOAT_ROOT}/storybook-static" "${DOCROOT}"
+        - alias ll="ls -la"
+        - echo "AddType text/javascript .mjs" >> /usr/local/apache2/conf/httpd.conf
 
       update:
         # Install storybook
