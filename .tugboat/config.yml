@@ -8,8 +8,7 @@ services:
     commands:
       # Commands that set up the basic preview infrastructure
       init:
-        # Link the document root to the expected path. This example links the
-        # root of the git repository to the docroot
-        #- ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+        # Install storybook
+        - npx storybook@latest init
       build:
         - npm run storybook
