@@ -1,0 +1,15 @@
+services:
+
+  node:
+    # Use the available version of Apache by not specifying a version
+    image: tugboatqa/node:18
+
+    # A set of commands to run while building this service
+    commands:
+      # Commands that set up the basic preview infrastructure
+      init:
+        # Link the document root to the expected path. This example links the
+        # root of the git repository to the docroot
+        - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+      build:
+        - npm run storybook
