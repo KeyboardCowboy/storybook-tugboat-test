@@ -3,6 +3,7 @@ services:
   apache:
     image: tugboatqa/httpd:latest
     commands:
+      # Initialize the server.
       init:
         # Install node.js version 18.
         - curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
@@ -17,10 +18,12 @@ services:
         # Ensure MJS files are properly served and readable by the server.
         - echo "AddType text/javascript .mjs" >> /usr/local/apache2/conf/httpd.conf
 
+      # Load dependent libraries and prepare the site for build.
       update:
         # Install storybook and other dependencies.
         - npm install
 
+      # Build the site.
       build:
         # Build the static storybook site.
         - npm run build-storybook
