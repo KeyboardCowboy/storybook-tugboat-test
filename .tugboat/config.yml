@@ -10,11 +10,15 @@ services:
 
         # Set the webroot for Storybook
         - ln -snf "${TUGBOAT_ROOT}/storybook-static" "${DOCROOT}"
+
+        # Add a handy alias if we need to go digging through the filesystem.
         - alias ll="ls -la"
+
+        # Ensure MJS files are properly served and readable by the server.
         - echo "AddType text/javascript .mjs" >> /usr/local/apache2/conf/httpd.conf
 
       update:
-        # Install storybook
+        # Install storybook and other dependencies.
         - npm install
 
       build:
