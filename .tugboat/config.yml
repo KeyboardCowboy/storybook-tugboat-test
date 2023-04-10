@@ -1,12 +1,4 @@
 services:
-  # Configure the webserver to serve the storybook static site.
-  apache:
-    image: tugboatqa/httpd:latest
-    commands:
-      init:
-        # Set the webroot for Storybook
-        - ln -snf "./storybook-static" "${DOCROOT}"
-
   node:
     # Configure the Node service to run Storybook.
     image: tugboatqa/node:18
@@ -17,7 +9,15 @@ services:
       init:
         # Install storybook
         - npm install
+
       build:
         # Build the static storybook site.
         - npm run build-storybook
 
+  # Configure the webserver to serve the storybook static site.
+  apache:
+    image: tugboatqa/httpd:latest
+    commands:
+      init:
+        # Set the webroot for Storybook
+        - ln -snf "${TUGBOAT_ROOT}/storybook-static" "${DOCROOT}"
