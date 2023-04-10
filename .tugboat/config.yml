@@ -1,7 +1,7 @@
 services:
   # Configure the webserver to serve the storybook static site.
   apache:
-    image: tugboatqa/httpd
+    image: tugboatqa/httpd:latest
     commands:
       init:
         # Set the webroot for Storybook
